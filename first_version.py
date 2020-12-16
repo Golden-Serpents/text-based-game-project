@@ -20,10 +20,10 @@ class Application(tk.Frame):
         self.create_widgets()
 
     def create_widgets(self):
-
+        
         self.option = []
         self.title = []
-
+    
         ##the shit i need to work outside of the function
         option1 = False
         option2 = False
@@ -80,26 +80,30 @@ class Application(tk.Frame):
         x-=1
 
         self.option[x]["command"] = (lambda : option1 , True) ###need to do this with commands so that they don't automatically trigger
-
-        return
     
-def task():
-    
-    while option1 == False: # this needs to trigger once the window is created not before. it currently triggers before therefore the window is created with the second option enabled normally
-                            # as this is meant to be the only way to get a different ending this obviously shouldn't be the case
-        time.sleep(1)
-        timer += 1
+        global task
         
-        if timer == 3:
-            x+=1
+        def task():
             
-            self.option[x]["state"] = tk.NORMAL
-            print("2. leave the apartment")
-            option1 = True
-
-    root.after(2000, task)
-
+            x = 0
+            timer = 0
+            
+            while timer <= 3: # this needs to trigger once the window is created not before. it currently triggers before therefore the window is created with the second option enabled normally
+                                    # as this is meant to be the only way to get a different ending this obviously shouldn't be the case
+                time.sleep(1)
+                timer += 1
+                
+                if timer == 3:
+                    x+=1
                     
+                    self.option[x]["state"] = tk.NORMAL
+                    self.option[x]["command"] = lambda : option2 , True
+                    print("2. leave the apartment")
+                    
+
+            root.after(2000, task)
+
+                        
 root = tk.Tk()
 
 app = Application(master=root)

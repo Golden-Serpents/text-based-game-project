@@ -80,28 +80,16 @@ class Application(tk.Frame):
         x-=1
 
         self.option[x]["command"] = (lambda : option1 , True) ###need to do this with commands so that they don't automatically trigger
-    
-        global task
         
-        def task():
-            
-            x = 0
-            timer = 0
-            
-            while timer <= 3: # this needs to trigger once the window is created not before. it currently triggers before therefore the window is created with the second option enabled normally
-                                    # as this is meant to be the only way to get a different ending this obviously shouldn't be the case
-                time.sleep(1)
-                timer += 1
-                
-                if timer == 3:
-                    x+=1
-                    
-                    self.option[x]["state"] = tk.NORMAL
-                    self.option[x]["command"] = lambda : option2 , True
-                    print("2. leave the apartment")
-                    
+        global task 
+        
+        def task(): #infinite loop problem
+   
+            self.option[x]["state"] = tk.NORMAL
+            self.option[x]["command"] = lambda : option2 , True
+            print("2. leave the apartment")
 
-            root.after(2000, task)
+            root.after(1, task)
 
                         
 root = tk.Tk()
@@ -110,7 +98,7 @@ app = Application(master=root)
 
 app.master.title("options screen")
 app.master.geometry("300x185")
-root.after(2000, task)
+root.after(1, task) #infinite loop problem
 app.mainloop()
 
 ##this ain't good

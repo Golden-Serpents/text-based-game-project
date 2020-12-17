@@ -89,8 +89,6 @@ class Application(tk.Frame):
             self.option[x]["command"] = lambda : option2 , True
             print("2. leave the apartment")
 
-x = 1
-
 root = tk.Tk()
 
 app = Application(master=root)

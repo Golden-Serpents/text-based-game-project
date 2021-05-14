@@ -79,7 +79,7 @@ class Application(tk.Frame):
 
         x-=1
 
-        self.option[x]["command"] = (lambda : option1 , True) ###need to do this with commands so that they don't automatically trigger
+        self.option[x]["command"] = lambda : option1 , True ###need to do this with commands so that they don't automatically trigger
         
         global task 
 
